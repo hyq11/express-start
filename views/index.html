@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title><%= title %></title>
+    <script type="text/javascript" src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+</head>
+
+<body>
+    <div id="app"></div>
+    <% if(title) {%>
+    <h1>welcome to coming</h1>
+    <% } %>
+    <input type="text">
+    <button class="btn">点击</button>
+    <ul class="cont"></ul>
+    <script>
+        $(function () {
+            $("button").click(function(){
+                let name = $('input').val()
+                $.ajax("http://127.0.0.1:3812/api/reg", {
+                    method: 'get',
+                    data: { name },
+                    success: function(data){
+                        const res = data.result
+                    },
+                    error: function(err) {
+                        console.log(err)
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+
+</html>
